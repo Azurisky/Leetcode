@@ -10,7 +10,7 @@ class Solution(object):
         stack = [[s, 0]]
         visited = {}
         while stack:
-            tmp, leng = stack.pop(0)
+            tmp, leng = stack.pop()
             if tmp in visited:
                 continue
             visited[tmp] = 1
