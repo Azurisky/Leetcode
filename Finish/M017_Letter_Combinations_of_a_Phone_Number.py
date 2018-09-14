@@ -4,7 +4,7 @@ class Solution:
         :type digits: str
         :rtype: List[str]
         """
-        
+        ## dfs
         mapping = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', 
                    '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
         digits = digits.strip('1')
@@ -22,3 +22,21 @@ class Solution:
         dfs(digits, [])
     
         return ans
+        
+
+        ## iteration
+        mapping = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', 
+                   '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+        if not digits:
+            return []
+        ans = ['']
+        for i in digits:
+            tmp = []
+            for j in ans:
+                for k in mapping[i]:
+                    tmp.append(j+k)
+            ans = tmp
+        
+        return ans
+            
+                     

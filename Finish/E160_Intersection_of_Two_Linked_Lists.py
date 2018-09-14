@@ -10,6 +10,7 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
+        
         ## Truncate the long one
         if not headA or not headB:
             return None

@@ -44,3 +44,13 @@ class Solution:
                         m = tmp
                         ans = s[i:j+1]
         return ans
+
+        ## TLE
+        ans = ""
+        l = len(s)
+        for i in range(l):
+            for j in range(i, l):
+                # print(s[i:j+1], s[i:j+1][::-1])
+                if s[i:j+1] == s[i:j+1][::-1] and len(s[i:j+1]) > len(ans):
+                    ans = s[i:j+1]
+        return ans

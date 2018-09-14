@@ -11,8 +11,23 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
+
+        ## iterative
         ans = []
+        stack = []
         
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            if not stack:
+                return ans
+            node = stack.pop()
+            ans.append(node.val)
+            root = node.right
+
+        ## recursive
+        ans = []
         def goLeft(root, ans):
             if not root:
                 return

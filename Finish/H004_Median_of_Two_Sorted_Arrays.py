@@ -15,14 +15,7 @@ class Solution:
             second = self.getKth(nums1, nums2, total // 2)
             return (first + second) / 2
         else:
-            return self.getKth(nums1, nums2, total // 2)  
-        
-    
-    def findMedian(self, nums):
-        if len(nums)%2 == 1:
-            return nums[len(nums)//2]
-        else:
-            return (nums[len(nums)//2] + nums[len(nums)//2 - 1])/2
+            return self.getKth(nums1, nums2, total // 2)    
         
     def getKth(self, nums1, nums2, k):
         if len(nums1) == 0:

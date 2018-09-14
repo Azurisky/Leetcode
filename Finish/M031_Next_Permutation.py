@@ -4,6 +4,8 @@ class Solution:
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
+
+        ## idea from here, https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
         if not nums:
         	return
 
