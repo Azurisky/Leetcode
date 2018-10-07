@@ -24,3 +24,4 @@ class Solution:
                 num = 0
             # print(i, sign, num, res)
         return res
+    

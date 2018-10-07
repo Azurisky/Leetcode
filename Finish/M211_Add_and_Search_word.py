@@ -1,5 +1,51 @@
 class WordDictionary(object):
 
+    ## Use trie
+    class TrieNode:
+        # Initialize your data structure here.
+        def __init__(self):
+            self.children = {}
+            self.is_word = False
+
+    class WordDictionary(object):
+
+        def __init__(self):
+            """
+            Initialize your data structure here.
+            """
+            self.root = TrieNode()
+
+        def addWord(self, word):
+            """
+            Adds a word into the data structure.
+            :type word: str
+            :rtype: void
+            """
+            node = self.root
+            for i in word:
+                node.children[i] = node.children.get(i, TrieNode())
+                node = node.children[i]
+            node.is_word = True
+        
+        
+        def search(self, word):        
+            def find(node, word):
+                if not word:
+                    return node.is_word
+                ch = word[0]
+                word = word[1:]
+                if ch != '.' and ch not in node.children:
+                    return False
+                elif ch in node.children:
+                    node = node.children[ch]
+                    return find(node, word) 
+                elif ch == '.':
+                    tmp = False
+                    for i in node.children:
+                        tmp = tmp or find(node.children[i], word)
+                    return tmp 
+            return find(self.root, word)
+
     ## Use len to be faster
     def __init__(self):
         self.l = {}

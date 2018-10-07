@@ -5,6 +5,41 @@ class Solution:
         :type edges: List[List[int]]
         :rtype: int
         """
+
+        ## Union Find
+
+        dic = {}
+        
+        def findparent(num):
+            if num != dic[num]:
+                dic[num] = findparent(dic[num])
+            return dic[num]
+        
+        for i, j in edges:
+            if i in dic:
+                tmp1 = findparent(i)
+            else:
+                dic[i] = i
+                tmp1 = i
+            
+            if j in dic:
+                tmp2 = findparent(j)
+                dic[tmp2] = tmp1
+            else:
+                dic[j] = tmp1
+        print(dic)
+        ans = []
+        for i in range(n):
+            if i not in dic:
+                ans.append(i)
+            else:
+                tmp = findparent(i)
+                if tmp not in ans:
+                    ans.append(tmp)
+        
+        return len(ans)
+
+        ## Graph
         visited = {}
         nei = {}
         ans = 0

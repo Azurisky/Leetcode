@@ -1,4 +1,4 @@
-class Solution(object):
+    class Solution(object):
     # heap solution:
     # Build max heap: Time Complexity = O(n)
     # Take max element out: Time Comlexity = O(logn), do k times: = O(klogn)
@@ -38,7 +38,7 @@ class Solution(object):
         :type nums: List[int]
         :type k: int
         :rtype: int
-        """    
+        """    v
         low = 0
         high = len(nums) - 1
         # Shuffle to avoid the worst case

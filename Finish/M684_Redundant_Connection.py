@@ -5,6 +5,34 @@ class Solution:
         :rtype: List[int]
         """
         
+        ## Union Find
+        dic = {}
+        
+        def findParent(num):
+            if num != dic[num]:
+                dic[num] = findParent(dic[num])
+            return dic[num]
+        
+        for i, j in edges:
+            if i in dic and j in dic:
+                if findParent(i) == findParent(j):
+                    ans = [i, j]               
+            if i in dic:
+                tmp1 = findParent(i)
+            else:
+                dic[i] = i
+                tmp1 = i
+                
+            if j in dic:
+                tmp2 = findParent(j)
+                dic[tmp2] = tmp1
+            else:
+                dic[j] = tmp1
+            
+        return ans
+
+        ## Find
+
         def find(val):
             if val not in parent:
                 parent[val] = val

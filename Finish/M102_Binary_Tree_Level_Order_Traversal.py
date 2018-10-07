@@ -12,6 +12,28 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
+        ## Faster
+        ans = []
+        
+        if not root:
+            return []
+        queue = [root]
+        tmp = []
+        l = []
+        while queue:
+            for node in queue:
+                l.append(node.val)
+                if node.left:
+                    tmp.append(node.left)
+                if node.right:
+                    tmp.append(node.right)
+            ans.append(l)
+            l = []
+            queue, tmp = tmp, []                
+        
+        return ans
+
+        ## original
         ans = []
         
         if not root:

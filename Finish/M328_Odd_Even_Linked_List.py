@@ -11,9 +11,33 @@ class Solution:
         :rtype: ListNode
         """
          
+
+        ## 100% 
+        node = head
+        odd = head
+        head_even = even = ListNode(0)
+        if not head:
+            return None
+        
+        while odd:
+            if odd.next:
+                even.next = odd.next
+                even = even.next   
+            else:
+                break
+            if even.next:
+                odd.next = even.next
+                odd = odd.next
+            else:
+                break
+                
+        odd.next = head_even.next
+        even.next = None
+        return head
+
+        ## old
         if not head or not head.next:
             return head
-        
 
         odd = head
         even = get = head.next

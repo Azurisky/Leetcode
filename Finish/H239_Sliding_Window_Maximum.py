@@ -14,11 +14,11 @@ class Solution:
             ## Pop out the samllr item
             while d and nums[d[-1]] < n:
                 d.pop()
-            d += i,
+            d += i
             if d[0] == i - k:
                 d.popleft()
             if i >= k - 1:
-                out += nums[d[0]],
+                out += nums[d[0]]
         return out
         
         ## Use heap, faster

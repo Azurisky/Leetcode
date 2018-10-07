@@ -6,14 +6,46 @@ class Solution:
         :type wordList: List[str]
         :rtype: int
         """
+
+        ## BFS
+        def construct_dict(word_list):
+            d = {}
+            for word in word_list:
+                for i in range(len(word)):
+                    s = word[:i] + "_" + word[i+1:]
+                    d[s] = d.get(s, []) + [word]
+            return d
+            
+        def bfs_words(begin, end, dict_words):
+            queue = [(begin, 1)]
+            visited = set()
+            while queue:
+                word, steps = queue.pop(0)
+                if word not in visited:
+                    visited.add(word)
+                    if word == end:
+                        return steps
+                    for i in range(len(word)):
+                        s = word[:i] + "_" + word[i+1:]
+                        neigh_words = dict_words.get(s, [])
+                        for neigh in neigh_words:
+                            if neigh not in visited:
+                                queue.append((neigh, steps + 1))
+            return 0
+        
+        d = construct_dict(wordList)
+        return bfs_words(beginWord, endWord, d)
+
+
         ## Pass, use map to be faster
         word_list = wordList
-        word_len = len(endWord)
-        if endWord not in word_list: return 0
+        l = len(endWord)
+        if endWord not in word_list: 
+            return 0
 
         # group words that differ in i-th position
         i_differ_list = []
-        for i in range(word_len):
+        for i in range(l):
             i_differ_map = {}
             for word in word_list:
                 substr = word[:i]+word[i+1:]
@@ -22,7 +54,6 @@ class Solution:
                 i_differ_map[substr].append(word)
             i_differ_list.append(i_differ_map)
             
-        
         queue = [(1, beginWord)]
         visited = set()
         visited.add(beginWord)
@@ -33,7 +64,8 @@ class Solution:
             for i in range(word_len):
                 substr = word[:i]+word[i+1:]
                 for next_word in i_differ_list[i].get(substr, []):
-                    if next_word == endWord: return depth+1
+                    if next_word == endWord: 
+                        return depth+1
                     if next_word not in visited:
                         visited.add(next_word)
                         queue.append((depth+1, next_word))
